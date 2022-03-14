@@ -1,5 +1,6 @@
 let app = new Vue({
     el: '#app',
+
     data: {
         product: 'Socks',
         description: 'A pair of warm, fuzzy socks',
@@ -10,17 +11,34 @@ let app = new Vue({
         details:['80% cotton', '20% polyester', 'Gender-neutral'],
         variants: [
             {
-                variantId: 1,
-                variantColor: 'blue'
+                variantId: 2234,
+                variantColor: 'green',
+                variantImage: './assets/vmSocks-green-onWhite.jpg'
             },
             {
-                variantId: 2,
-                variantColor: 'green'
-            },
-            {
-                variantId: 3,
-                variantColor: 'pink'
+                variantId: 2235,
+                variantColor: 'blue',
+                variantImage: './assets/vmSocks-blue-onWhite.jpg'
             }
         ],
+        sizes: ['S', 'M', 'L', 'XL', 'XXL', 'XXXL'],
+        cart: 0
+    },
+
+    methods: {
+
+        addToCart() {
+            this.cart += 1
+        },
+
+        removeFromCart() {
+            if (this.cart !== 0) {
+                this.cart -= 1
+            }
+        },
+
+        updateProduct(image) {
+            this.image = image
+        }
     }
 })
