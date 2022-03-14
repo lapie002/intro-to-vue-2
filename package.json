@@ -1,0 +1,11 @@
+{
+  "name": "intro-to-vue",
+  "version": "1.0.0",
+  "description": "socks-shop",
+  "main": "index.html",
+  "author": "Bruno Lapierre",
+  "license": "yes",
+  "dependencies": {
+    "vue": "2.6.14"
+  }
+}
