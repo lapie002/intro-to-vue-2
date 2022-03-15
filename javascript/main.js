@@ -36,10 +36,9 @@ Vue.component('product', {
           Add to cart
           </button>
 
-          <div class="cart">
-            <p>Cart({{ cart }})</p>
-          </div>
-
+        <button v-on:click="removeFromCart">
+          Remove From Cart
+        </button>
        </div>  
     
     </div>
@@ -62,7 +61,7 @@ Vue.component('product', {
                     variantId: 2235,
                     variantColor: '#445a72',
                     variantImage: 'https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg',
-                    variantQuantity: 0
+                    variantQuantity: 10
                 }
             ],
             cart: 0
@@ -70,7 +69,10 @@ Vue.component('product', {
     },
     methods: {
         addToCart: function() {
-            this.cart += 1
+            this.$emit('add-to-cart', this.variants[this.selectedVariant].variantId)
+        },
+        removeFromCart() {
+            this.$emit('remove-from-cart', this.variants[this.selectedVariant].variantId)
         },
         updateProduct: function(index) {
             this.selectedVariant = index
@@ -115,6 +117,25 @@ Vue.component('product-detail', {
 let app = new Vue({
     el: '#app',
     data: {
-        premium: true
+        premium: true,
+        cart: []
+    },
+    methods: {
+
+        updateCart(itemId) {
+            this.cart.push(itemId)
+        },
+
+        deleteCart(itemId) {
+            for(let index in this.cart) {
+
+                if(this.cart[index] === itemId) {
+                    let id = parseInt(index)
+                    this.cart.splice(id,1);
+                    break;
+                }
+
+            }
+        }
     }
 })
